@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimados PetCare Total</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Mimados 🐾 PetCare Total</a>
+
+        <!-- boton hamburguesa para el menu-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- menu-->
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="#nosotros">Sobre nosotros</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link" href="#carrito"><i class="fa fa-shopping-cart"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- INICIO -->
+<header id="inicio" class="hero d-flex align-items-center">
+    <div class="container text-center text-white textHero">
+        <h1 class="fw-bold">Mimaodos PetCare | Cuidamos lo que más quieres</h1>
+        <p class="lead">Productos y servicios profesionales para el bienestar de tus mascotas.</p>
+        <a href="#productos" class="btn btn-primary btn-lg">Ver productos</a>
+    </div>
+</header>
+
+<!-- PRODUCTOS -->
+<section id="productos" class="container py-5">
+    <h2 class="text-center mb-4">Productos destacados</h2>
+
+    <!-- Filtros -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <select class="form-select" id="filtroMascota">
+                <option value="">Mascota</option>
+                <option value="perro">Perro</option>
+                <option value="gato">Gato</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-select" id="filtroCategoria">
+                <option value="">Categoría</option>
+                <option value="alimentos">Alimentos</option>
+                <option value="juguetes">Juguetes</option>
+                <option value="higiene">Higiene</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" id="listaProductos">
+        <!-- Productos generados desde JS -->
+    </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="servicios py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Servicios</h2>
+
+        <div class="row g-4">
+            <!-- Baño -->
+            <div class="col-md-4">
+                <div class="card servicio-card">
+                    <img src="../siteGPT2/img/banioPerro.jpg" class="card-img-top" alt="Baño para mascotas">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-shower fa-2x mb-2"></i>
+                        <h5>Baño</h5>
+                        <p>Limpieza completa con productos especiales.</p>
+                        <p class="fw-bold">C$ 200.00</p>
+                        <button class="btn btn-primary reservar-btn" data-servicio="Baño">Reservar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Corte de pelo -->
+            <div class="col-md-4">
+                <div class="card servicio-card">
+                    <img src="../siteGPT2/img/cortePelo.jpg" class="card-img-top" alt="Corte de pelo de mascotas">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-scissors fa-2x mb-2"></i>
+                        <h5>Corte de pelo</h5>
+                        <p>Estilo profesional según la raza.</p>
+                        <p class="fw-bold">C$ 200.00</p>
+                        <button class="btn btn-primary reservar-btn" data-servicio="Corte de pelo">Reservar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Corte de uñas -->
+            <div class="col-md-4">
+                <div class="card servicio-card">
+                    <img src="../siteGPT2/img/corteUnias.jpg" class="card-img-top" alt="Corte de uñas de mascotas">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-paw fa-2x mb-2"></i>
+                        <h5>Corte de uñas</h5>
+                        <p>Cuidado seguro para evitar lesiones.</p>
+                        <p class="fw-bold">C$ 200.00</p>
+                        <button class="btn btn-primary reservar-btn" data-servicio="Corte de uñas">Reservar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="nosotros" class="container py-5">
+    <h2 class="text-center mb-4">Sobre nosotros</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="../siteGPT2/img/gatoFeliz.jpg" class="img-fluid rounded" alt="Equipo de cuidado de mascotas">
+        </div>
+        <div class="col-md-6">
+            <h4>Misión</h4>
+            <p>Ofrecer productos y servicios que mejoren la calidad de vida de las mascotas.</p>
+
+            <h4>Visión</h4>
+            <p>Ser el centro de cuidado animal más confiable y completo de León.</p>
+
+            <h4>Equipo</h4>
+            <p>Profesionales apasionados por el bienestar animal.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="bg-light py-5">
+
+
+
+<!-- FOOTER -->
+<footer class="text-center py-3">
+    <p>© 2025 Mimados | PetCare Total - Todos los derechos reservados</p>
+</footer>
+
+<!-- Bootstrap & JS++++++++++++++++++++++++++++++++++ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
+
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> f87738d (conflictos del merge)
