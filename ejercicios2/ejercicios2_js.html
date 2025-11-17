@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios JS con Bootstrap</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        #resultado {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <h1 class="text-center">Ejercicios de JavaScript</h1>
+
+    <!-- Ejercicio 1 -->
+    <div class="card shadow-sm">
+        <div class="card-body text-center">
+            <h5 class="card-title">Ejercicio 1: Nombre completo</h5>
+            <button class="btn btn-primary" onclick="mostrarNombreCompleto()">Mostrar nombre completo</button>
+        </div>
+    </div>
+
+    <!-- Ejercicio 2 -->
+    <div class="card shadow-sm">
+        <div class="card-body text-center">
+            <h5 class="card-title">Ejercicio 2: Operaciones matemáticas</h5>
+            <button class="btn btn-primary" onclick="calcular()">Calcular operaciones</button>
+        </div>
+    </div>
+
+    <!-- Ejercicio 3 -->
+    <div class="card shadow-sm">
+        <div class="card-body text-center">
+            <h5 class="card-title">Ejercicio 3: Multiplicar por número aleatorio</h5>
+            <button class="btn btn-primary " onclick="multiplicarAleatorio()">Multiplicar</button>
+        </div>
+    </div>
+
+    <!-- Ejercicio 4 -->
+    <div class="card shadow-sm">
+        <div class="card-body text-center">
+            <h5 class="card-title">Ejercicio 4: Elevar a potencia</h5>
+            <button class="btn btn-primary" onclick="elevarPotencia()">Calcular potencia</button>
+        </div>
+    </div>
+
+    <!-- Ejercicio 5 -->
+    <div class="card shadow-sm">
+        <div class="card-body text-center">
+            <h5 class="card-title">Ejercicio 5: Unir cadenas de texto</h5>
+            <button class="btn btn-primary " onclick="unirCadenas()">Unir cadenas</button>
+        </div>
+    </div>
+
+    <!-- Resultado -->
+    <div id="resultado" class="alert alert-secondary mt-4" role="alert">
+        Aquí se mostrarán los resultados.
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function mostrarNombreCompleto() {
+        let nombre = prompt("Ingrese su nombre:");
+        let apellido = prompt("Ingrese su apellido:");
+        alert("Su nombre completo es: " + nombre + " " + apellido);
+    }
+
+    function calcular() {
+        let num1 = parseFloat(prompt("Ingrese el primer número:"));
+        let num2 = parseFloat(prompt("Ingrese el segundo número:"));
+
+        let suma = num1 + num2;
+        let resta = num1 - num2;
+        let multiplicacion = num1 * num2;
+        let division = num1 / num2;
+
+        document.getElementById("resultado").innerHTML = `
+            <strong>Resultados:</strong><br>
+            Suma: ${suma} <br>
+            Resta: ${resta} <br>
+            Multiplicación: ${multiplicacion} <br>
+            División: ${division}
+        `;
+    }
+
+    function multiplicarAleatorio() {
+        let numero = parseFloat(prompt("Ingrese un número:"));
+        let aleatorio = Math.random()*10;
+        let resultado = numero * aleatorio;
+
+        document.getElementById("resultado").innerHTML = `
+            Número ingresado: ${numero} <br>
+            Número aleatorio: ${aleatorio} <br>
+            Resultado: ${resultado}
+        `;
+    }
+
+    function elevarPotencia() {
+        let base = parseFloat(prompt("Ingrese el primer número (base):"));
+        let exponente = parseFloat(prompt("Ingrese el segundo número (exponente):"));
+
+        let potencia = Math.pow(base, exponente);
+
+        document.getElementById("resultado").innerHTML = `
+            Base: ${base} <br>
+            Exponente: ${exponente} <br>
+            Resultado: ${potencia}
+        `;
+    }
+
+    function unirCadenas() {
+        let cadena1 = prompt("Ingrese la primera cadena de texto:");
+        let cadena2 = prompt("Ingrese la segunda cadena de texto:");
+
+        let primeraMayus = cadena1.toUpperCase();
+        let segundaMinus = cadena2.toLowerCase();
+
+        document.getElementById("resultado").innerHTML = `
+            Primera cadena (MAYÚSCULAS): ${primeraMayus} <br>
+            Segunda cadena (minúsculas): ${segundaMinus} <br><br>
+            <strong>Resultado final:</strong> ${primeraMayus} ${segundaMinus}
+        `;
+    }
+</script>
+
+</body>
+</html>
