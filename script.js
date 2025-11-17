@@ -83,28 +83,30 @@ document.querySelectorAll(".reservar-btn").forEach(btn => {
 });
 
 //contacto
+// FORMULARIO DE CONTACTO
 
-    document.getElementById("btnEnviar").addEventListener("click", function () {
+const btnEnviar = document.getElementById("btnEnviar");
+btnEnviar.addEventListener("click", () => {
+  const nombre = document.getElementById("nombre").value.trim();
+  const correo = document.getElementById("correo").value.trim();
+  const mensaje = document.getElementById("mensaje").value.trim();
+  const respuesta = document.getElementById("respuesta");
 
-        let nombre = document.getElementById("nombre").value.trim();
-        let correo = document.getElementById("correo").value.trim();
-        let mensaje = document.getElementById("mensaje").value.trim();
-        let respuesta = document.getElementById("respuesta");
+  // Validar campos
+  if (!nombre || !correo || !mensaje) {
+    respuesta.innerHTML = "Por favor completa todos los campos.";
+    respuesta.style.color = "red";
+    return;
+  }
 
-        // Validación simple
-        if (nombre === "" || correo === "" || mensaje === "") {
-            respuesta.innerHTML = "⚠️ Por favor, completa todos los campos.";
-            respuesta.style.color = "red";
-            return;
-        }
+  // Mostrar mensaje de confirmación
+  respuesta.innerHTML = "Gracias por tu mensaje. ¡Te contactaremos pronto!";
+  respuesta.style.color = "green";
 
-        // Mensaje de confirmación
-        respuesta.innerHTML = "✔ Tu mensaje fue enviado correctamente. ¡Gracias por contactarnos!";
-        respuesta.style.color = "green";
+  // Limpiar campos
+  document.getElementById("nombre").value = "";
+  document.getElementById("correo").value = "";
+  document.getElementById("mensaje").value = "";
+});
 
-        // Limpiar campos
-        document.getElementById("nombre").value = "";
-        document.getElementById("correo").value = "";
-        document.getElementById("mensaje").value = "";
-    });
 
