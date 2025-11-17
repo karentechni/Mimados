@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicio JS | Semáforo</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 40px;
+        background-color: #f0f0f0;
+    }
+
+    .semaforo {
+        width: 100px;
+        background-color: #aa9f0b;
+        padding: 20px;
+        border-radius: 20px;
+        margin: 0 auto 30px auto;
+    }
+
+    .luz {
+        width: 60px;
+        height: 60px;
+        background-color: #111;
+        margin: 15px auto;
+        border-radius: 50%;
+        transition: background-color 0.5s, box-shadow 0.5s;
+        box-shadow: 0 0 10px #000;
+    }
+
+    .activo-rojo { background-color: red; box-shadow: 0 0 20px red; }
+    .activo-amarillo { background-color: yellow; box-shadow: 0 0 20px yellow; }
+    .activo-verde { background-color: green; box-shadow: 0 0 20px green; }
+
+    button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        background-color: #4a90e2;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #357ac9;
+    }
+</style>
+</head>
+<body>
+
+<h1>Semáforo</h1>
+
+<div class="semaforo">
+    <div id="rojo" class="luz"></div>
+    <div id="amarillo" class="luz"></div>
+    <div id="verde" class="luz"></div>
+</div>
+
+<button onclick="cambiarLuz()">Cambiar luz manualmente</button>
+<button onclick="toggleAutomatico()">Cambiar automáticamente</button>
+
+<script>
+    let estado = 0; // 0 = rojo, 1 = amarillo, 2 = verde
+    let intervalo = null; // variable para el setInterval
+
+    function actualizarSemaforo() {
+        const rojo = document.getElementById("rojo");
+        const amarillo = document.getElementById("amarillo");
+        const verde = document.getElementById("verde");
+
+        // Apagar todas las luces
+        rojo.classList.remove("activo-rojo");
+        amarillo.classList.remove("activo-amarillo");
+        verde.classList.remove("activo-verde");
+
+        // Encender la luz según el estado
+        if (estado === 0) {
+            rojo.classList.add("activo-rojo");
+            estado = 1;
+        } else if (estado === 1) {
+            amarillo.classList.add("activo-amarillo");
+            estado = 2;
+        } else if (estado === 2) {
+            verde.classList.add("activo-verde");
+            estado = 0;
+        }
+    }
+
+    // Botón manual
+    function cambiarLuz() {
+        actualizarSemaforo();
+    }
+
+    // Botón automático
+    function toggleAutomatico() {
+        if (intervalo === null) {
+            // Iniciar cambio automático cada 4 segundos
+            intervalo = setInterval(actualizarSemaforo, 2000);
+        } else {
+            // Detener automático
+            clearInterval(intervalo);
+            intervalo = null;
+        }
+    }
+</script>
+
+</body>
+</html>
