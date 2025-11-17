@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestión de Estudiantes</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        padding: 40px 0;
+    }
+
+    .form-container {
+        max-width: 700px;
+        margin: auto;
+    }
+
+    .form-control[disabled],
+    select[disabled] {
+        background-color: #e9ecef;
+    }
+
+    .botones-navegacion {
+        margin-top: 20px;
+        /*text-align: center;*/
+    }
+
+    .btn-cancelar {
+        background-color: #00bcd4;
+        color: white;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container form-container">
+    <h1 class="text-center mb-4">Ejercicio Formularios JS </h1>
+    <br>
+    <div class="card shadow-sm">
+        <div class="card-title">
+            <h2 class=" m-4">Gestión de Estudiantes</h2>
+        </div>
+        <div class="card-body">
+            <!-- Botones principales arriba -->
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary me-2" onclick="nuevoEstudiante()">Nuevo</button>
+                <button type="button" class="btn btn-success me-2" onclick="guardarEstudiante()">Guardar</button>
+                <button type="button" class="btn btn-cancelar me-2" onclick="cancelarEstudiante()">Cancelar</button>
+                <button type="button" class="btn btn-danger" onclick="eliminarEstudiante()">Eliminar</button>
+            </div>
+            <hr>
+
+            <!-- Formulario -->
+            <form id="formEstudiante">
+                <div class="mb-3">
+                    <label for="txtNombre" class="form-label">Nombre</label>
+                    <input type="text" id="txtNombre" class="form-control" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="txtApellido" class="form-label">Apellido</label>
+                    <input type="text" id="txtApellido" class="form-control" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="selCarrera" class="form-label">Carrera</label>
+                    <select id="selCarrera" class="form-select" disabled>
+                        <option value="">Seleccione</option>
+                        <option value="Ingeniería en Sistemas de Información">Ingeniería en Sistemas de Información</option>
+                        <option value="Ingeniería Telemática">Ingeniería Telemática</option>
+                        <option value="Derecho">Derecho</option>
+                        <option value="Medicina">Medicina</option>
+                        <option value="Odontología">Odontología</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Sexo</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sexo" id="sexoM" value="Masculino" disabled>
+                        <label class="form-check-label" for="sexoM">Masculino</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sexo" id="sexoF" value="Femenino" disabled>
+                        <label class="form-check-label" for="sexoF">Femenino</label>
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="chkEgresado" disabled>
+                    <label class="form-check-label" for="chkEgresado">¿Egresado?</label>
+                </div>
+            </form>
+            <hr>
+
+            <!-- Botones de navegación abajo -->
+            <div class="botones-navegacion">
+                <button type="button" class="btn bg-black text-white me-2" onclick="primero()"><<</button>
+                <button type="button" class="btn btn-secondary me-2" onclick="anterior()"><</button>
+                <button type="button" class="btn btn-secondary me-2" onclick="siguiente()">></button>
+                <button type="button" class="btn bg-black text-white" onclick="ultimo()">>></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Arreglo global de estudiantes
+    let estudiantes = [];
+    let indiceActual = -1;
+    let creando = false;
+
+    // Obtener elementos del formulario
+    const txtNombre = document.getElementById("txtNombre");
+    const txtApellido = document.getElementById("txtApellido");
+    const selCarrera = document.getElementById("selCarrera");
+    const sexoM = document.getElementById("sexoM");
+    const sexoF = document.getElementById("sexoF");
+    const chkEgresado = document.getElementById("chkEgresado");
+
+    // Funciones para habilitar y deshabilitar controles
+    function habilitarControles() {
+        txtNombre.disabled = false;
+        txtApellido.disabled = false;
+        selCarrera.disabled = false;
+        sexoM.disabled = false;
+        sexoF.disabled = false;
+        chkEgresado.disabled = false;
+    }
+
+    function deshabilitarControles() {
+        txtNombre.disabled = true;
+        txtApellido.disabled = true;
+        selCarrera.disabled = true;
+        sexoM.disabled = true;
+        sexoF.disabled = true;
+        chkEgresado.disabled = true;
+    }
+
+    function limpiarControles() {
+        txtNombre.value = "";
+        txtApellido.value = "";
+        selCarrera.value = "";
+        sexoM.checked = false;
+        sexoF.checked = false;
+        chkEgresado.checked = false;
+    }
+
+    function mostrarEstudiante(indice) {
+        if (indice < 0 || indice >= estudiantes.length) return;
+        const est = estudiantes[indice];
+        txtNombre.value = est.nombre;
+        txtApellido.value = est.apellido;
+        selCarrera.value = est.carrera;
+        sexoM.checked = est.sexo === "Masculino";
+        sexoF.checked = est.sexo === "Femenino";
+        chkEgresado.checked = est.egresado;
+        indiceActual = indice;
+    }
+
+    // Botón Nuevo
+    function nuevoEstudiante() {
+        habilitarControles();
+        limpiarControles();
+        creando = true;
+    }
+
+    // Botón Cancelar
+    function cancelarEstudiante() {
+        deshabilitarControles();
+        creando = false;
+        if (indiceActual >= 0) mostrarEstudiante(indiceActual);
+        else limpiarControles();
+    }
+
+    // Botón Guardar
+    function guardarEstudiante() {
+        const nombre = txtNombre.value.trim();
+        const apellido = txtApellido.value.trim();
+        const carrera = selCarrera.value;
+        const sexo = sexoM.checked ? "Masculino" : sexoF.checked ? "Femenino" : "";
+        const egresado = chkEgresado.checked;
+
+        if (!nombre || !apellido || !carrera || !sexo) {
+            alert("Complete todos los campos correctamente.");
+            return;
+        }
+
+        const estudiante = { nombre, apellido, carrera, sexo, egresado };
+
+        if (creando) {
+            estudiantes.push(estudiante);
+            indiceActual = estudiantes.length - 1;
+            creando = false;
+            alert("Estudiante agregado correctamente.");
+        } else if (indiceActual >= 0) {
+            estudiantes[indiceActual] = estudiante;
+            alert("Estudiante actualizado correctamente.");
+        }
+
+        deshabilitarControles();
+        mostrarEstudiante(indiceActual);
+    }
+
+    // Botón Eliminar
+    function eliminarEstudiante() {
+        if (indiceActual < 0 || estudiantes.length === 0) return alert("No hay estudiante seleccionado.");
+        if (!confirm("¿Desea eliminar este estudiante?")) return;
+        estudiantes.splice(indiceActual, 1);
+        if (estudiantes.length === 0) {
+            limpiarControles();
+            indiceActual = -1;
+        } else if (indiceActual >= estudiantes.length) {
+            indiceActual = estudiantes.length - 1;
+            mostrarEstudiante(indiceActual);
+        } else {
+            mostrarEstudiante(indiceActual);
+        }
+    }
+
+    // Navegación
+    function primero() {
+        if (estudiantes.length > 0) mostrarEstudiante(0);
+    }
+
+    function ultimo() {
+        if (estudiantes.length > 0) mostrarEstudiante(estudiantes.length - 1);
+    }
+
+    function siguiente() {
+        if (indiceActual < estudiantes.length - 1) mostrarEstudiante(indiceActual + 1);
+    }
+
+    function anterior() {
+        if (indiceActual > 0) mostrarEstudiante(indiceActual - 1);
+    }
+</script>
+
+</body>
+</html>

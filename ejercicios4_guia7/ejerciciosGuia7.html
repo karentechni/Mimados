@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicios JS - Guia 7</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        padding: 40px 0;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .resultado-card {
+        margin-top: 10px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mb-5">Ejercicios de JavaScript | Guía 7</h1>
+
+    <div class="row">
+        <!-- Columna 1 -->
+        <div class="col-md-6">
+            <!-- Ejercicio 1 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>1</b> Evaluar si un número es mayor que 100</h5>
+                    <button class="btn btn-secondary text-white" onclick="evaluarNumero()">Ejecutar</button>
+                    <div id="res1" class="resultado-card"></div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 2 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>2</b> Determinar si un alumno aprueba o reprueba</h5>
+                    <button class="btn btn-secondary text-white" onclick="evaluarAlumno()">Ejecutar</button>
+                    <div id="res2" class="resultado-card"></div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 3 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>3</b> Calcular total a pagar por camisetas</h5>
+                    <button class="btn btn-secondary text-white" onclick="calcularCamisetas()">Ejecutar</button>
+                    <div id="res3" class="resultado-card"></div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 4 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>4</b> Calcular salario semanal de un obrero</h5>
+                    <button class="btn btn-secondary text-white" onclick="calcularSalario()">Ejecutar</button>
+                    <div id="res4" class="resultado-card"></div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 5 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>5</b> Sumar 5 números enteros positivos</h5>
+                    <button class="btn btn-secondary text-white" onclick="sumarCincoPositivos()">Ejecutar</button>
+                    <div id="res5" class="resultado-card"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna 2 -->
+        <div class="col-md-6">
+            <!-- Ejercicio 6 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>6</b> Sumar los números pares del 1 al 100</h5>
+                    <button class="btn btn-secondary text-white" onclick="sumarPares100()">Ejecutar</button>
+                    <div id="res6" class="resultado-card"></div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 7 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>7</b> Tabla de multiplicar de un número</h5>
+                    <button class="btn btn-secondary text-white" onclick="tablaMultiplicar()">Ejecutar</button>
+                    <div id="res7" class="resultado-card"></div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 8 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>8</b> Serie de Ulam (Conjetura de Collatz)</h5>
+                    <button class="btn btn-secondary text-white" onclick="conjeturaUlam()">Ejecutar</button>
+                    <div id="res8" class="resultado-card"></div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 9 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>9</b> Calcular factoriales del 1 al 5</h5>
+                    <button class="btn btn-secondary text-white" onclick="factorialUnoACinco()">Ejecutar</button>
+                    <div id="res9" class="resultado-card"></div>
+                </div>
+            </div>
+
+            <!-- Ejercicio 10 -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><b>10</b> Primeros 50 números de la serie Fibonacci</h5>
+                    <button class="btn btn-secondary text-white" onclick="fibonacci50()">Ejecutar</button>
+                    <div id="res10" class="resultado-card"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Ejercicio 1
+    function evaluarNumero() {
+        let numero = parseFloat(prompt("Ingrese un número:"));
+        if (isNaN(numero)) return alert("Número inválido");
+        document.getElementById("res1").innerHTML = numero > 100 ? `El número ${numero} es mayor que 100.` : `El número ${numero} NO es mayor que 100.`;
+    }
+
+    // Ejercicio 2
+    function evaluarAlumno() {
+        let cal1 = parseFloat(prompt("Ingrese la primera calificación:"));
+        let cal2 = parseFloat(prompt("Ingrese la segunda calificación:"));
+        let cal3 = parseFloat(prompt("Ingrese la tercera calificación:"));
+        if ([cal1, cal2, cal3].some(isNaN)) return alert("Ingrese números válidos");
+        let promedio = (cal1 + cal2 + cal3) / 3;
+        let estado = promedio >= 60 ? "APRUEBA" : "REPRUEBA";
+        document.getElementById("res2").innerHTML = `Calificaciones: ${cal1}, ${cal2}, ${cal3} <br>Promedio: ${promedio.toFixed(2)} <br>Estado: <strong>${estado}</strong>`;
+    }
+
+    // Ejercicio 3
+    function calcularCamisetas() {
+        let cantidad = parseInt(prompt("Ingrese la cantidad de camisetas:"));
+        if (isNaN(cantidad) || cantidad <= 0) return alert("Cantidad inválida");
+        let precioUnitario = parseFloat(prompt("Ingrese el precio unitario:"));
+        if (isNaN(precioUnitario) || precioUnitario <= 0) return alert("Precio inválido");
+        let total = cantidad * precioUnitario;
+        let descuento = cantidad >= 12 ? total * 0.2 : total * 0.1;
+        document.getElementById("res3").innerHTML = `Cantidad: ${cantidad}<br>Precio unitario: $${precioUnitario.toFixed(2)}<br>Descuento: $${descuento.toFixed(2)}<br><strong>Total a pagar: $${(total - descuento).toFixed(2)}</strong>`;
+    }
+
+    // Ejercicio 4
+    function calcularSalario() {
+        let horas = parseFloat(prompt("Ingrese horas trabajadas:"));
+        if (isNaN(horas) || horas < 0) return alert("Número inválido");
+        const tNorm = 20, tExtra = 25;
+        let salario = horas <= 40 ? horas * tNorm : 40 * tNorm + (horas - 40) * tExtra;
+        document.getElementById("res4").innerHTML = `Horas trabajadas: ${horas} <br><strong>Salario semanal: $${salario.toFixed(2)}</strong>`;
+    }
+
+    // Ejercicio 5
+    function sumarCincoPositivos() {
+        let suma = 0, contador = 0;
+        while (contador < 5) {
+            let n = parseInt(prompt(`Ingrese número positivo #${contador + 1}`));
+            if (!isNaN(n) && n > 0) { suma += n; contador++; }
+            else alert("Número inválido");
+        }
+        document.getElementById("res5").innerHTML = `La suma de los 5 números positivos es: <strong>${suma}</strong>`;
+    }
+
+    // Ejercicio 6
+    function sumarPares100() {
+        let suma = 0;
+        for (let i = 2; i <= 100; i += 2) suma += i;
+        document.getElementById("res6").innerHTML = `La suma de los pares del 1 al 100 es: <strong>${suma}</strong>`;
+    }
+
+    // Ejercicio 7
+    function tablaMultiplicar() {
+        let num = parseInt(prompt("Ingrese un número entero:"));
+        if (isNaN(num)) return alert("Número inválido");
+        let tabla = `<h5>Tabla del ${num}</h5>`;
+        for (let i = 1; i <= 10; i++) tabla += `${num} x ${i} = ${num * i}<br>`;
+        document.getElementById("res7").innerHTML = tabla;
+    }
+
+    // Ejercicio 8
+    function conjeturaUlam() {
+        let n = parseInt(prompt("Ingrese número positivo inicial:"));
+        if (isNaN(n) || n <= 0) return alert("Número inválido");
+        let serie = [n];
+        while (n !== 1) n = n % 2 === 0 ? n / 2 : 3 * n + 1, serie.push(n);
+        document.getElementById("res8").innerHTML = `Serie de Ulam iniciando con ${serie[0]}:<br>${serie.join(", ")}`;
+    }
+
+    // Ejercicio 9
+    function factorialUnoACinco() {
+        let r = "";
+        for (let i = 1; i <= 5; i++) {
+            let f = 1;
+            for (let j = 1; j <= i; j++) f *= j;
+            r += `Factorial de ${i} = ${f}<br>`;
+        }
+        document.getElementById("res9").innerHTML = r;
+    }
+
+    // Ejercicio 10
+    function fibonacci50() {
+        let fib = [0, 1];
+        for (let i = 2; i < 50; i++) fib[i] = fib[i - 1] + fib[i - 2];
+        document.getElementById("res10").innerHTML = `Primeros 50 números de Fibonacci:<br>${fib.join(", ")}`;
+    }
+</script>
+
+</body>
+</html>
