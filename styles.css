@@ -72,3 +72,32 @@ footer {
 .servicios .card-body{
     color: #5a4636;
 }
+
+
+/* Animación suave al aparecer */
+.contacto-box {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: aparecer 0.8s ease-out forwards;
+}
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Resaltar campos al seleccionar */
+.contacto-box input:focus,
+.contacto-box textarea:focus {
+    border-color: #ff8fab;
+    box-shadow: 0 0 5px #ffb3c6;
+    transition: 0.3s;
+}
+
+/* Efecto en botón */
+.enviar-btn:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}

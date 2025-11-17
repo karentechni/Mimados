@@ -81,3 +81,30 @@ document.querySelectorAll(".reservar-btn").forEach(btn => {
         if (hora) alert(`Reserva confirmada para las ${hora}`);
     });
 });
+
+//contacto
+
+    document.getElementById("btnEnviar").addEventListener("click", function () {
+
+        let nombre = document.getElementById("nombre").value.trim();
+        let correo = document.getElementById("correo").value.trim();
+        let mensaje = document.getElementById("mensaje").value.trim();
+        let respuesta = document.getElementById("respuesta");
+
+        // Validación simple
+        if (nombre === "" || correo === "" || mensaje === "") {
+            respuesta.innerHTML = "⚠️ Por favor, completa todos los campos.";
+            respuesta.style.color = "red";
+            return;
+        }
+
+        // Mensaje de confirmación
+        respuesta.innerHTML = "✔ Tu mensaje fue enviado correctamente. ¡Gracias por contactarnos!";
+        respuesta.style.color = "green";
+
+        // Limpiar campos
+        document.getElementById("nombre").value = "";
+        document.getElementById("correo").value = "";
+        document.getElementById("mensaje").value = "";
+    });
+
